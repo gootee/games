@@ -1,86 +1,32 @@
-<nav class="navbar">
-  <a href="/games/index">
-    <div class="navbar_left">
-      <i class="fas fa-dice fa-3x"></i>
-      <h2>Games</h2> 
-    </div>  
-  </a>  
+<nav class="game_navbar">
+  <div>
+    <a href="/games/index">
+      <div class="navbar_left">
+        <i class="fas fa-dice fa-3x"></i>
+        <h2>Games</h2> 
+      </div>  
+    </a>      
+  </div>
+  <div>
+    <% if (username) { %>
 
+      <div class="navbar_right">
+        <div class="p2 user_name_display"><#%= username %></div>
 
-    
-    
-    <!-- <img src="./chicken2.jpeg" alt="Chicken2">
-    <img src="https://icon-library.net/icon/chicken-icon-png-2.html" alt="Chicken3">
-    
-    <div class="item a-image">
-      <img src="/temp_assets/student.svg" width="480" height="480" alt="Student Illustration">
-    </div> -->
-
-
-    <!-- <img src="http://icons.iconarchive.com/icons/google/noto-emoji-animals-nature/256/22266-chicken-icon.png> -->
-    <!-- <h1>Cluckr</h1> -->
-    <div class="menu_links">
-      <a href="/games/sudoku">Sudoku</a>
-      <!-- <a href="/sales_listing/show" class="menu_link">Listing Show</a>
-      |  
-      <a href="/stratas/show" class="menu_link">Strata Show</a> -->
-      <!-- |   -->
-      <!-- <a href="/stratas/index" class="menu_link">Strata Index</a>
-      |       -->
-      <!-- <a href="/" class="menu_link" style="color: blue">Home</a> -->
-      <!-- |
-      <a href="/profile/show" class="menu_link">Profile Show</a>
-      |
-      <a href="/profile/new" class="menu_link">Original Profile New</a>       -->
-    </div>
-    <div>
-        
-        <!-- user && if user.length >0 -->
-      <% if (username) { %>
-        
-        <!-- <a href="/articles/new">New Articles</a> -->
-
-        <!-- <div class="signedInNav"> -->
-          <!-- <form action="/clucks/new" method="GET"> -->
-            <!-- <label for="username">Sign in!</label>
-            <input type="text" name="username"></input> -->
-            <!-- <input type="submit" value="Cluck!" class="btn btn-primary"> -->
-          <!-- </form> -->
-        <div class="navbar_right">
-          <div class="p2 user_name_display"><#%= username %></div>
-
-            <form action="/sign_out" method="POST">
-              <input type="submit" value="Sign Out" class="">
-            </form>          
-          </div>
+          <form action="/sign_out" method="POST">
+            <input type="submit" value="Sign Out" class="">
+          </form>          
         </div>
-  
-      <% } else { %>
+      </div>
+
+    <% } else { %>
+      <div class="navbar_right">
         <form action="/sign_in" method="POST">
           <label for="username">Sign in!</label>
           <input type="text" name="username" style="margin: 20px 0 0 0;"></input>
           <input type="submit" value="Sign In">
         </form>
-      <% } %>      
-    </div>
-
-
-
-
-
-
-    <!-- <# % if (username) { % > 
-      <a href="/articles/new">New Articles</a>
-      < %#= username % >
-      <form action="/sign_out" method="POST">
-        <input type="submit" value="Sign Out" class="btn btn-danger">
-      </form>
-    <# % } else { % >
-      <form action="/sign_in" method="POST">
-        <label for="username">Sign in!</label>
-        <input type="text" name="username"></input>
-        <input type="submit" value="Log In" class="btn btn-primary">
-      </form>
-    < %# } % > -->
-
+      </div>
+    <% } %>      
+  </div>
 </nav>

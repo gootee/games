@@ -141,10 +141,11 @@ small,
   vertical-align:middle;
 } */
 
-.navbar {
+.game_navbar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
 .navbar_left {
@@ -159,6 +160,13 @@ small,
   margin: 0 20px 0 0;
 }
 
+.game_buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 .game_button {
   margin: 30px;
   width: 200px;
@@ -167,12 +175,20 @@ small,
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  border-radius: 15px;
 }
 
-.sudoku_button {
+.index_sudoku_button {
   background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Sudoku_Puzzle_by_L2G-20050714_standardized_layout.svg/1200px-Sudoku_Puzzle_by_L2G-20050714_standardized_layout.svg.png');
   background-repeat:no-repeat; 
   background-size: contain;
+}
+
+.index_hangman_button {
+  background-image:url('https://s3.amazonaws.com/iconbros/icons/icon_pngs/000/001/955/original/hangman.png?1560586372');
+  background-repeat:no-repeat; 
+  background-size: contain;
+  background-color: white;
 }
 
 .game {
@@ -247,4 +263,86 @@ small,
 
 .conflict {
   background-color: lightpink;
+}
+
+/* hangman */
+
+.alphabetBox {
+  max-width: 800px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.letter {
+  margin: 5px;
+  min-width: 50px;
+  height: 50px;
+  font-size: 35px;
+}
+
+.game {
+  display: flex;
+  flex-direction: row;
+}
+
+.gameLeft {
+  display: flex;
+  flex-direction: row;
+  margin: 0 30px 0 0;
+  /* max-width: 120 px; */
+}
+
+.gameRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  /* max-width: 120 px; */
+}
+
+.guessLetters {
+  display: flex;
+  flex-direction: row;
+  width: 20 px;
+  justify-content: center;
+  align-items: flex-end;
+  height: 300px;
+}
+
+.utilityArea {
+  height: 140px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.resetButton {
+  margin: 0 0 0 20px;
+}
+
+
+.letterDisplay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  /* padding: 0em 2em; */
+  width: 65px; 
+  height: 65px;
+}
+
+.guessLetter {
+  background-color: grey;
+  /* padding: 20em; */
+  width: 75px; 
+  height: 75px;
+  margin: 3px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: black;
+  border-bottom-style: solid;
+  border-width: 5px;
 }

@@ -1,0 +1,36 @@
+<%- include("../partials/header") %>
+
+<!-- <h5><%= word %></h5> -->
+
+<div>
+  <p>Hangman!</p>
+</div>
+<div class="game">
+  <div class="gameLeft">
+    <div>
+      <img src="" alt="Gallows" class="gallowsPhoto">
+    </div>  
+  </div>  
+  <div class="gameRight">
+    <div class="alphabetBox">
+
+    </div>    
+    <div class="utilityArea">
+      <p class="userMessage"></p>
+      <div>
+        <a href="/games/hangman">
+          <button style="display:none" type="button" class="btn btn-default resetButton">New Game</button>
+        </a>
+      </div>
+    </div>  
+    <div class="guessLetters">
+    </div>
+  </div>    
+</div>
+
+<script>
+  const word = "<%= word %>"
+</script>
+<script src="/javascripts/hangman.js"></script>
+  
+<%- include("../partials/footer") %>
