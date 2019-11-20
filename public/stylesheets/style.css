@@ -22,35 +22,20 @@ html {
 }
 
 body {
-  /* background: linear-gradient(120deg, #001F28 0%, #F4EACF 100%); */
   font-family: 'Thasadith', sans-serif;
-
-  /* font-size: 16pt; */
   padding: 20px 50px;
-  /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
 }
 
 p {
   color: white;
-  /* margin-bottom: 1.25em; */
   font-size: 20pt;
 }
 
 .p2 {
   color: white;
-  /* margin-bottom: 1.25em; */
   font-size: 14pt;
 }
 
-/* h1,
-h2,
-h3,
-h4,
-h5 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-  line-height: 1.15;
-} */
 .h0 {
   margin-top: 0;
   font-size: 10.052em;
@@ -84,9 +69,9 @@ h2 {
 h3 {
   font-size: 3.453em;
   font-family: 'Staatliches', cursive;
-  -webkit-text-fill-color: black; /* Will override color (regardless of order) */
+  -webkit-text-fill-color: #072252; /* Will override color (regardless of order) */
   -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: #3F629E;
+  -webkit-text-stroke-color: white;
 }
 
 h4 {
@@ -176,20 +161,39 @@ small,
   justify-content: center;
   align-items: center;
   border-radius: 15px;
+  background-repeat:no-repeat; 
+  background-size: contain;
+}
+
+.stacked_index_button_label {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
 }
 
 .index_sudoku_button {
   background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Sudoku_Puzzle_by_L2G-20050714_standardized_layout.svg/1200px-Sudoku_Puzzle_by_L2G-20050714_standardized_layout.svg.png');
-  background-repeat:no-repeat; 
-  background-size: contain;
+
 }
 
 .index_hangman_button {
   background-image:url('https://s3.amazonaws.com/iconbros/icons/icon_pngs/000/001/955/original/hangman.png?1560586372');
-  background-repeat:no-repeat; 
-  background-size: contain;
+  /* background-repeat:no-repeat; 
+  background-size: contain; */
   background-color: white;
 }
+
+.index_minesweeper_button {
+  background-image:url('https://lh3.googleusercontent.com/fw6TqxQqPURxfVX6Pja9YVNmbNTE4-iYDD_DUJzCC-QOhVxUhSvbUA4_YFE9VtQNlLI');
+  background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMmTg-te1XGePmWehsZqtCu_2hgrjVWJF5qaUWhjnvtPcioXYFUg&s');
+  
+  /* background-repeat:no-repeat; 
+  background-size: contain; */
+  /* background-color: white; */
+}
+
+
 
 .game {
   margin: 30px;
@@ -345,4 +349,102 @@ small,
   border: black;
   border-bottom-style: solid;
   border-width: 5px;
+}
+
+/* Minesweeper */
+
+.minesweeper_cells_9x9 {
+  width: 360px;
+  height: 360px;
+  margin: 20px;
+}
+
+.minesweeper_cells_16x16 {
+  width: 640px;
+  height: 640px;
+  margin: 20px;
+}
+
+.minesweeper_cells_24x24 {
+  width: 960px;
+  height: 960px;
+  margin: 20px;
+}
+
+.minesweeper_cell {
+  float: left;
+  width: 40px;
+  height: 40px;
+  background-color: #BFBFBF;
+  font-size:50px;
+  text-align:center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align:middle;
+  border-bottom: 2px solid #7B7B7B;
+  border-left: 2px solid #ffffff;
+  border-top: 2px solid #ffffff;
+  border-right: 2px solid #7B7B7B;
+}
+
+p:hover {
+  background-color: lightgray;
+  color: slategray;
+  /* background-color: yellow; */
+  cursor: default;
+}
+
+/* minesweeper_cell:hover {
+  background-color: lightgray;
+  color: slategray;
+  cursor: default;
+}
+
+cell_display:hover {
+  background-color: lightgray;
+  color: slategray;
+  cursor: pointer;
+} */
+
+.revealed_cell {
+  border-bottom: none;
+  border-left: none;
+  border-top: none;
+  border-right: none;
+}
+
+/* button {
+  font-family: 'MS Sans Serif';
+  text-align: left;
+  font-size: 14px;
+  height: 30px;
+  width: 100px;
+  background-color: #BFBFBF;
+  color: black;
+  border-bottom: 2px solid #7B7B7B;
+  border-left: 2px solid #ffffff;
+  border-top: 2px solid #ffffff;
+  border-right: 2px solid #7B7B7B;
+}
+
+button:hover {
+  background-color: lightgray;
+  color: slategray;
+  cursor: pointer;
+} */
+
+.minesweeper_cell_input {
+  float: left;
+  width: 80px;
+  height: 80px;
+  background-color: #fff;
+  font-size:50px;
+  text-align:center;
+  /* display: table-cell; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align:middle;
+  border:1px solid black;
 }

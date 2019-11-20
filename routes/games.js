@@ -31,4 +31,14 @@ router.get('/hangman', function(req, res) {
   })
 });
 
+router.get('/minesweeper', function(req, res) {
+  // fs.readFile('words.csv', 'utf8', function(err, data) {
+  //   if (err) throw err;
+  //   // console.log(data)
+  //   const hangmanWords = data.split('\n')
+  //   const randomWordIndex = hangmanWords.length > 0 ? Math.ceil(Math.random() * hangmanWords.length) : 0; 
+  //   const randomWord = hangmanWords[randomWordIndex]
+    res.render('games/minesweeper');
+  // })
+});
 module.exports = router;
