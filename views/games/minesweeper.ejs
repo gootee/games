@@ -1,108 +1,17 @@
 <%- include("../partials/header") %>
 
 <h5>Minesweeper</h5>
-
+<div class="minesweeper_buttons">
+  <div>
+    <a href="/games/minesweeper">
+      <button>New Game</button>
+    </a>
+  </div>
+</div>
 <div class="minesweeper_cells">
 
 </div>
-<!-- <div class="sudoku_buttons">
-  <button class="sudoku_button btn btn-primary check_game">Check Game</button>
-  <button class="sudoku_button btn btn-primary hint">Show Hint</button>
-  <button class="sudoku_button btn btn-primary show_solution">Show Solution</button>  
-  <a href="/games/sudoku">
-    <button class="sudoku_button btn btn-primary new_game">New Game</button>
-  </a>
-</div>
 
-<div class="game">    
-  <div class="sudoku_cells">
-    <div class="cell row1 col1 grp1"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row1 col2 grp1"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row1 col3 grp1"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row1 col4 grp2"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row1 col5 grp2"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row1 col6 grp2"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row1 col7 grp3"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row1 col8 grp3"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row1 col9 grp3"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row2 col1 grp1"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row2 col2 grp1"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row2 col3 grp1"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row2 col4 grp2"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row2 col5 grp2"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row2 col6 grp2"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row2 col7 grp3"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row2 col8 grp3"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row2 col9 grp3"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row3 col1 grp1"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row3 col2 grp1"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row3 col3 grp1"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row3 col4 grp2"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row3 col5 grp2"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row3 col6 grp2"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row3 col7 grp3"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row3 col8 grp3"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row3 col9 grp3"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row4 col1 grp4"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row4 col2 grp4"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row4 col3 grp4"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row4 col4 grp5"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row4 col5 grp5"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row4 col6 grp5"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row4 col7 grp6"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row4 col8 grp6"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row4 col9 grp6"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row5 col1 grp4"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row5 col2 grp4"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row5 col3 grp4"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row5 col4 grp5"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row5 col5 grp5"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row5 col6 grp5"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row5 col7 grp6"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row5 col8 grp6"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row5 col9 grp6"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row6 col1 grp4"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row6 col2 grp4"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row6 col3 grp4"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row6 col4 grp5"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row6 col5 grp5"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row6 col6 grp5"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row6 col7 grp6"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row6 col8 grp6"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row6 col9 grp6"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row7 col1 grp7"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row7 col2 grp7"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row7 col3 grp7"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row7 col4 grp8"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row7 col5 grp8"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row7 col6 grp8"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row7 col7 grp9"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row7 col8 grp9"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row7 col9 grp9"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row8 col1 grp7"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row8 col2 grp7"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row8 col3 grp7"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row8 col4 grp8"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row8 col5 grp8"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row8 col6 grp8"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row8 col7 grp9"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row8 col8 grp9"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row8 col9 grp9"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row9 col1 grp7"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row9 col2 grp7"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row9 col3 grp7"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row9 col4 grp8"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row9 col5 grp8"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row9 col6 grp8"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row9 col7 grp9"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row9 col8 grp9"><input class="cell_input" type="text" maxlength="1"/></div>
-    <div class="cell row9 col9 grp9"><input class="cell_input" type="text" maxlength="1"/></div>
-  </div>
-</div> -->
-
-<!-- <script>
-  const puzzle = "<#%= puzzle %>"
-</script> -->
 <script src="/javascripts/minesweeper.js"></script>
   
 <%- include("../partials/footer") %>

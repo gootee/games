@@ -389,29 +389,22 @@ small,
 }
 
 p:hover {
-  background-color: lightgray;
-  color: slategray;
-  /* background-color: yellow; */
   cursor: default;
 }
-
-/* minesweeper_cell:hover {
-  background-color: lightgray;
-  color: slategray;
-  cursor: default;
-}
-
-cell_display:hover {
-  background-color: lightgray;
-  color: slategray;
-  cursor: pointer;
-} */
 
 .revealed_cell {
   border-bottom: none;
   border-left: none;
   border-top: none;
   border-right: none;
+  /* border:  */
+  border-width: .25px;
+  border-style: solid;
+  border-color: grey;
+}
+
+.killer_mine {
+  background-color: red;
 }
 
 /* button {

@@ -4,7 +4,8 @@
 
 let dimension = 16,
   mineCount = 0, 
-  cells
+  cells,
+  gameStatus 
 
 function setBoardParams() {
   const cells = document.querySelector(".minesweeper_cells")
@@ -69,11 +70,6 @@ function getAdjacentCells(index) {
 }
 
 function countAdjacentMines(index, mineMap) {
-
-
-  // if (index === 0 || index % dimension === 0) {
-  //   debugger        
-  // }
   const adjacentCells = getAdjacentCells(index);
   let adjacentMineCount = 0;
 
@@ -104,16 +100,17 @@ function loadBoard() {
   }
 
   for (let i = 0; i < cellCount; i++) {
-
-    const hasBomb = mineMap[i];
-    const adjacentMineCount = countAdjacentMines(i, mineMap)
-    const cellDisplay = getCellDisplay(hasBomb, adjacentMineCount)
+    let cellParams = {}
+    cellParams.hasBomb = mineMap[i];
+    cellParams.adjacentMineCount = countAdjacentMines(i, mineMap)
+    const cellDisplay = getCellDisplay(cellParams)
     const classString =
       "class='minesweeper_cell" +
       " adjacent_mine_count" +    //keep adjacentMineCount at classList[1]
-      adjacentMineCount.toString() +
-      (hasBomb ? ' hasBomb' : '') +
+      cellParams.adjacentMineCount.toString() +
+      (cellParams.hasBomb ? ' hasBomb' : '') +
       "'"
+
     htmlString += 
       "<div id=" + 
       i.toString() + 
@@ -131,19 +128,33 @@ function loadBoard() {
   }
 
   document.querySelector(".minesweeper_cells").insertAdjacentHTML("afterbegin", htmlString)
+  gameStatus = "active"
 }
 
-function getCellDisplay(hasBomb, adjacentMineCount) {
-  if (hasBomb) {
+// function getCellDisplay(hasBomb, adjacentMineCount) {
+function getCellDisplay(cellParams) {
+  
+  if (cellParams.hasFlag) {
     return { 
-      displayString: "&#128163;",
+      displayString: "&#128681;",
       color: ""
     }
+  } else if (cellParams.hasQuestion) {
+    return { 
+      displayString: "&#63;",
+      color: ""
+    }
+  } else if (cellParams.hasBomb) {
+      return { 
+        displayString: "&#128163;",
+        color: ""
+      }
   } else {
-    let assignedColour
-    switch (adjacentMineCount) {
+    let assignedColour = "";
+    let adjacentMineCountString = cellParams.adjacentMineCount.toString();
+    switch (cellParams.adjacentMineCount) {
       case 0: {
-        assignedColour = "black"
+        adjacentMineCountString = "";
         break;        
       }
       case 1: {
@@ -184,7 +195,7 @@ function getCellDisplay(hasBomb, adjacentMineCount) {
       }
     }
     return {
-      displayString: adjacentMineCount.toString(),
+      displayString: adjacentMineCountString,
       color: assignedColour      
     }
   }
@@ -201,53 +212,87 @@ function revealCell(cell) {
   cell.classList.add("revealed_cell")
 }
 
-function revealAdjacentCells(index) {
+// function revealAdjacentCells(index) {
 
+// }
+
+function flagClick(cell) {
+  debugger
+  let cellParams = {}
+  cellParams.hasFlag = cell.classList.contains("hasFlag")
+  cellParams.hasQuestion = cell.classList.contains("hasQuestion")
+  cellParams.hasBomb = cell.classList.contains("hasBomb")
+
+  if (cellParams.hasFlag) {
+    cell.classList.remove("hasFlag");
+    cellParams.hasFlag = false;
+    cell.classList.add("hasQuestion");
+    cellParams.hasQuestion = true;
+  } else if (cellParams.hasQuestion) {
+    cell.classList.remove("hasQuestion")
+    cellParams.hasQuestion = false;
+  } else {
+    cell.classList.add("hasFlag")
+    cellParams.hasFlag = true;
+  }
+
+  const cellDisplay = getCellDisplay(cellParams);
+  cell.firstChild.innerHTML = cellDisplay.displayString;
+}
+
+function rightClickCell(event) {
+  event.preventDefault();
+  flagClick(event.currentTarget)
 }
 
 function clickCell(event) {
-  // debugger
-  const cell = event.currentTarget;
-  if (cell.classList.contains("hasBomb")) {
+  if (gameStatus === "active") {
+    // debugger
+    const cell = event.currentTarget;
+    if (cell.classList.contains("hasBomb")) {
+      cell.classList.add("killer_mine")
+      const allBombs = document.querySelectorAll(".hasBomb")
+      for (let i = 0; i < allBombs.length; i++) {
+        revealCell(allBombs[i]);
+      }
+      gameStatus = "fail"
+    } else {
+      let cellsIndicesToReveal = [parseInt(cell.id)];
+      currentCounter = 0;
 
-  } else {
-    let cellsIndicesToReveal = [parseInt(cell.id)];
-    currentCounter = 0;
+      while ((cellsIndicesToReveal) && cellsIndicesToReveal.length >= currentCounter + 1) {
+        const curCellIndex = cellsIndicesToReveal[currentCounter];
+        const curCell = document.getElementById(curCellIndex.toString())
+        const adjacentMineCount = convertAdjacentMineCount(curCell.classList[1])
 
-    while ((cellsIndicesToReveal) && cellsIndicesToReveal.length >= currentCounter + 1) {
-      const curCellIndex = cellsIndicesToReveal[currentCounter];
-      const curCell = document.getElementById(curCellIndex.toString())
-      const adjacentMineCount = convertAdjacentMineCount(curCell.classList[1])
+        if (adjacentMineCount === 0) {
+          const adjacentCellIndices = getAdjacentCells(curCell.id)
+          if (adjacentCellIndices.length > 0) {
+            for (let i = 0; i < adjacentCellIndices.length; i++) {
+              const adjacentCellIndex = adjacentCellIndices[i]
+              if (!document.getElementById(adjacentCellIndex).classList.contains("revealed_cell")) {
+                if (cellsIndicesToReveal.indexOf(adjacentCellIndex) === -1) {
+                  cellsIndicesToReveal.push(adjacentCellIndex)
+                }              
+              }
+            }          
+          }
+        }  
 
-      if (adjacentMineCount === 0) {
-        const adjacentCellIndices = getAdjacentCells(curCell.id)
-        if (adjacentCellIndices.length > 0) {
-          for (let i = 0; i < adjacentCellIndices.length; i++) {
-            const adjacentCellIndex = adjacentCellIndices[i]
-            if (!document.getElementById(adjacentCellIndex).classList.contains("revealed_cell")) {
-              if (cellsIndicesToReveal.indexOf(adjacentCellIndex) === -1) {
-                cellsIndicesToReveal.push(adjacentCellIndex)
-              }              
-            }
-          }          
-        }
-      }  
-
-      revealCell(curCell);
-      currentCounter++;
+        revealCell(curCell);
+        currentCounter++;
+      }
     }
   }
 }
 
-
 function load() {
-  // debugger;
   loadBoard();
   cells = document.querySelectorAll(".minesweeper_cell")
   cells.forEach(cell => {
     cell.addEventListener("click", clickCell)
+    cell.addEventListener("contextmenu", rightClickCell)
   })
 }
 
-// console.log("in file")
 load();
