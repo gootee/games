@@ -352,6 +352,16 @@ small,
 }
 
 /* Minesweeper */
+.minesweeper_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.minesweeper_buttons {
+  margin: 20px;
+}
 
 .minesweeper_cells_9x9 {
   width: 360px;
@@ -397,10 +407,18 @@ p:hover {
   border-left: none;
   border-top: none;
   border-right: none;
-  /* border:  */
   border-width: .25px;
   border-style: solid;
   border-color: grey;
+}
+
+.invisible_value {
+  display: none;
+}
+
+.score {
+  font-size: 20pt;
+  margin: 20px;
 }
 
 .killer_mine {

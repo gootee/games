@@ -37,15 +37,6 @@ function setBoardParams() {
   }
 }
 
-// function convertIndexToRowAndColumn(index) {
-//   const cellPosition = {}
-
-//   cellPosition.row = Math.ceil((index + 1)/dimension);
-//   cellPosition.col = ((index + 1) % dimension) > 0 ? ((index + 1) % 9) : 9;
-  
-//   return cellPosition;
-// }
-
 function convertRowAndColumnToIndex(row, col) {
   return (row - 1) * dimension + col - 1
 }
@@ -119,8 +110,7 @@ function loadBoard() {
       " " +
       classString +
       ">" + 
-      "<p class='cell_display'" + 
-      "style='color:" +
+      "<p class='invisible_value' style='color:" +
       cellDisplay.color +
       ";'" +
       ">" +
@@ -133,9 +123,8 @@ function loadBoard() {
   gameStatus = "active"
 }
 
-// function getCellDisplay(hasBomb, adjacentMineCount) {
 function getCellDisplay(cellParams) {
-  
+  // debugger
   if (cellParams.hasFlag) {
     return { 
       displayString: "&#128681;",
@@ -144,7 +133,7 @@ function getCellDisplay(cellParams) {
   } else if (cellParams.hasQuestion) {
     return { 
       displayString: "&#63;",
-      color: ""
+      color: "black"
     }
   } else if (cellParams.hasBomb) {
       return { 
@@ -211,6 +200,7 @@ function convertAdjacentMineCount(classString) {
 
 function revealCell(cell) {
   cell.classList.add("revealed_cell")
+  cell.firstChild.classList.remove("invisible_value")
 }
 
 function flagClick(cell) {
@@ -226,11 +216,14 @@ function flagClick(cell) {
       cellParams.hasFlag = false;
       cell.classList.add("hasQuestion");
       cellParams.hasQuestion = true;
+      cell.firstChild.classList.remove("invisible_value")
     } else if (cellParams.hasQuestion) {
       cell.classList.remove("hasQuestion")
+      cell.firstChild.classList.add("invisible_value")
       cellParams.hasQuestion = false;
     } else {
       cell.classList.add("hasFlag")
+      cell.firstChild.classList.remove("invisible_value")
       cellParams.hasFlag = true;
     }
   
@@ -240,7 +233,8 @@ function flagClick(cell) {
 }
 
 function clickCell(event) {
-  processClick(event.currentTarget)
+  processClick(event.currentTarget);
+  scoreGame();
 }
 
 function processClick(cell) {
@@ -276,8 +270,6 @@ function processClick(cell) {
         }
         gameStatus = "fail"
       } else {
-  
-  
         let cellsIndicesToReveal = [parseInt(cell.id)];
         currentCounter = 0;
   
@@ -318,12 +310,37 @@ function mouseDownOnCell(event) {
 
 function load() {
   loadBoard();
-  cells = document.querySelectorAll(".minesweeper_cell")
+  cells = document.querySelectorAll(".minesweeper_cell");
   cells.forEach(cell => {
-    cell.addEventListener("mousedown", mouseDownOnCell)
-    cell.addEventListener("click", clickCell)
-    cell.addEventListener("contextmenu", clickCell)
+    cell.addEventListener("mousedown", mouseDownOnCell);
+    cell.addEventListener("click", clickCell);
+    cell.addEventListener("contextmenu", clickCell);
   })
+  scoreGame();
+}
+
+function scoreGame() {
+  debugger;
+  let scoreString = "Click open cells and mark mines with flags",
+  flagCount = 0,
+  revealedCount = 0;
+
+  for (cell of cells) {
+    if (cell.classList.contains("hasFlag")) {
+      flagCount ++
+    }
+    if (cell.classList.contains("revealed_cell")) {
+      revealedCount ++
+    }
+  }
+
+  if (revealedCount === cells.length - mineCount) {
+    scoreString = "You win!"
+  } else {
+    scoreString = flagCount.toString() + " flags / " + mineCount.toString() + " mines"
+  }
+  const scoreDisplay = document.querySelector(".score");
+  scoreDisplay.innerHTML = scoreString
 }
 
 load();
